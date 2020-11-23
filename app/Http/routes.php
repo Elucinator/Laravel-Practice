@@ -27,3 +27,11 @@ Route::get('/contact', function () {
 Route::get('/post/{id}/{name}', function($id, $name) {
     return "post number: $id and post name: $name";
 });
+
+/* Naming Routes */
+
+#creating a name for url which can be used in code instead of writing whole url.
+Route::get('/admin/test/long/url', array('as' => 'short.url', function() {
+        $url = route('short.url');
+        return "this url is: " . $url;
+    }));
