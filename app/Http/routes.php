@@ -19,9 +19,9 @@ Route::get('/about', function () {
     return 'this is about page';
 });
 
-Route::get('/contact', function () {
-    return 'this is contact page';
-});
+//Route::get('/contact', function () {
+//    return 'this is contact page';
+//});
 
 /* Using parameters/variables in routes */
 Route::get('/post/{id}/{name}', function($id, $name) {
@@ -30,8 +30,16 @@ Route::get('/post/{id}/{name}', function($id, $name) {
 
 /* Naming Routes */
 
-#creating a name for url which can be used in code instead of writing whole url.
+/* Creating a name for url which can be used in code instead of writing whole url. */
 Route::get('/admin/test/long/url', array('as' => 'short.url', function() {
         $url = route('short.url');
         return "this url is: " . $url;
     }));
+
+/* Routing data from route to controller index method */
+//Route::get('/post/{id}', 'postController@index');
+
+/* Creating routes for resource postController */
+Route::resource('posts', 'postController');
+
+Route::get('contact/{name}/{age}/{education}', 'postController@show_contact_page');
